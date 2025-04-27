@@ -1,3 +1,4 @@
+CSC 317 Website Group Project
 Team name
 MJK ELectronics
 
