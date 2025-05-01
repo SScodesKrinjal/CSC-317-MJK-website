@@ -1,0 +1,81 @@
+
+/* ----------------------------------------------SEARCH BAR---------------------------------------------- */
+
+/* Search bar and container styling */
+#search p {
+    margin: 10px 40px;
+    text-align: center;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.search-bar {
+    width: 60%;
+    max-width: 800px;
+    min-width: 300px;
+    padding: 12px 20px;
+    padding-right: 50px;
+    border: 2px solid #781102;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.search-icon {
+    position: absolute;
+    right: calc(20% + 10px);
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px;
+    height: auto;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* Results container styling */
+.results {
+    width: 60%; /* Match search bar width */
+    max-width: 800px; /* Match search bar max-width */
+    margin: 0 auto; /* Center the results */
+    position: relative;
+    z-index: 100; /* Ensure results appear above other content */
+}
+
+.search-result {
+    background-color: white;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.search-result h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.1em;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .search-icon {
+        right: 7%;
+    }
+    
+    .search-bar,
+    .results {
+        width: 90%;
+        min-width: unset;
+    }
+}
