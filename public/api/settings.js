@@ -187,6 +187,4 @@ router.post('/settings/update-username', (req, res) => {
     });
 });
 
-// Rest of your code remains the same...
-
 module.exports = router;
