@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - MKJ Electronics</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/search.css">
+</head>
+<body>
+    <header>
+        <a href="/" id="headerLogo">
+            <img src="/images/Logo.png" alt="MKJ Electronics Logo" height="100">
+        </a>
+
+        <div class="top-right-links">
+            <a href="/login">Login/Register</a>
+            <a href="/settings">Account/Settings</a>
+        </div>
+    </header>
+
+    <nav>
+        <input type="checkbox" id="toggle-menu" />
+        <label for="toggle-menu" id="hamburger">&#9776;</label>
+        <ul id="nav-links">
+            <li><a href="/products">PRODUCTS</a></li>
+            <li><a href="/search">SEARCH</a></li>
+            <li><a href="/about">ABOUT</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li id="cart-icon-container">
+                <a href="/cart" id="cart-icon">
+                    <img src="/images/my-cart.png" alt="Cart" />
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+    <section id="search">
+        <h2>Search Electronics</h2>
+        <p>Looking for a new laptop, smartphone, TV, or camera? Use the search bar to find the perfect device.</p>
+
+        <div class="search-container">
+            <input type="search" id="search-input" class="search-bar" placeholder="Search electronics by name...">
+            <button id="search-button" class="search-icon">🔍</button>
+        </div>
+        <div class="results" id="results"></div>
+    </section>
+
+    <footer>
+        <div class="footer-section">
+            <h3>Get to know us</h3>
+            <ul>
+                <li><a href="/newsletter">Newsletter</a></li>
+                <li><a href="/careers">Join us</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Tech Tips & Buying Guides</h3>
+            <p>
+                Learn how to choose the best laptop, TV, or smartphone for your needs.<br>
+                <a href="/guides">Explore Guides</a>
+            </p>
+        </div>
+        <div class="footer-section">
+            <h3>Customer Service</h3>
+            <p>
+                Need help with your order?<br>
+                <a href="/contact">Contact Support</a>
+            </p>
+        </div>
+        <div class="footer-section">
+            <h3>Your Account</h3>
+            <ul>
+                <li><a href="/login">Login/Register</a></li>
+                <li><a href="/settings">Account/Settings</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <script src="/js/search.js"></script>
+</body>
+</html>
