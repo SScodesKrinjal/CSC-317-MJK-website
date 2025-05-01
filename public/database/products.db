@@ -1,0 +1,24 @@
+-- Create the table ---
+
+CREATE TABLE products (
+	id INTEGER PRIMARY KEY,
+	title TEXT NOT NULL,
+	description TEXT NOT NULL,
+	price REAL NOT NULL,
+	token TEXT NOT NULL
+);
+
+-- Populate the table with entries ---
+-- VALUES format: (id, title, description, price, token)
+
+INSERT INTO products VALUES (1, 'Laptop Pro X', 'A high-performance laptop with 16GB RAM and 1TB SSD.', 1499.99, 'token-laptop-001');
+INSERT INTO products VALUES (2, 'Smartphone Ultra', 'Latest-gen smartphone with an advanced camera and fast processor.', 899.99, 'token-smartphone-002');
+INSERT INTO products VALUES (3, '4K Smart TV', 'Experience crystal-clear visuals on a 65-inch 4K television.', 1299.99, 'token-tv-003');
+INSERT INTO products VALUES (4, 'DSLR Camera Z5', 'Professional DSLR camera with 24MP and 4K video.', 799.99, 'token-camera-004');
+
+-- Now format the table for better legibility (for SQLite CLI)
+
+.mode markdown
+.headers on
+.width 10 20 40 10 40
+SELECT * FROM products;
