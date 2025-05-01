@@ -1,0 +1,126 @@
+
+/* ----------------------------------------------PRODUCTS---------------------------------------------- */
+
+#products ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px; 
+}
+
+#products li {
+    border-radius: 3px;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    width: calc(33.33% - 10px); /* Ensures only 3 items per row*/
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #4c4c4c10;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0; /* Removed margin to rely on gap from flexbox */
+}
+
+#products img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+#products h3 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+}
+
+#products p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+.price {
+    font-size: 2.2rem !important; /* overrides for font size */
+    font-family: 'Bebas Neue', sans-serif;
+    color: #7a1000;
+    margin-top: auto;
+    margin: 10px 0;
+}
+
+button {
+    color: black;
+    background: linear-gradient(to bottom, #fee967 0%, #fec168 100%);
+    border: 2px solid rgba(0, 0, 0, 0.418);
+    margin: 10px auto;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.15s ease;
+    padding: 0 20px;
+    max-width: 320px;
+    height: 70px;
+    font: bold 40px/42px Arial, sans-serif;
+    box-shadow: 1px 2px 1px rgba(0, 0, 0, .29);
+    cursor: pointer;
+    margin-top: auto;
+
+}
+
+button:hover {
+    background: linear-gradient(to bottom, #f0dd60 0%, #c0934f 100%);
+    box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.15);
+}
+@media (max-width: 600px) {
+    
+
+    /*----------------------------------------------MOBILE PRODUCTS--------------------------------------- */
+
+    h3, p {
+        width: 80%; /* Make text elements take full width */
+        max-width: 600px; /* Limit text width */
+        text-align: center; /* Center-align text */
+        margin: 0 auto; /* Center the text block */
+        padding: 10px; /* Add some padding for spacing */
+    }
+
+    #products h3, #products p, #products .price {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #products ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: block; /* Stack items vertically */
+    }
+    #products li {
+        width: 100%; /* Each item takes full width */
+        margin: 10px 0;
+        display: block; /* Ensure items are block elements */
+        text-align: center; /* Center content horizontally */
+    }
+
+    #products img {
+        width: 80%; /* Adjust image width for mobile view */
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .price {
+        display: inline-block; /* Allows text-align: center to center the button */
+        margin: 10px auto;     /* Ensure margins are set to auto */
+        font-size: 1.1em;
+    }
+
+    button {
+        display: inline-block; /* Allows text-align: center to center the button */
+        margin: 10px auto;     /* Ensure margins are set to auto */
+    }
+}
