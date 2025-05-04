@@ -2,21 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Profile - MKJ Electronics</title>
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-  <header><h1>User Profile</h1></header>
+  <header>
+    <h1>MKJ Electronics</h1>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../shop/shop.html">Shop</a>
+      <a href="profile.html">Profile</a>
+      <a href="../cart/cart.html">Cart</a>
+      <a href="../about/about.html">About</a>
+      <a href="../faq/faq.html">FAQ</a>
+      <a href="../login/login.html">Login</a>
+    </nav>
+  </header>
+
   <main>
-    <section class="profile-info">
-      <!--image for a profile pic?-->
-      <h2>Profile Information</h2>
-      <div class="profile-details">
-        <p><strong>Name:</strong> John Doe</p>
-        <p><strong>Email:</strong> john@example.com</p>
-        <p><strong>Order History:</strong> 3 orders</p>
-      </div>
+    <section class="profile">
+      <h2>Welcome, Ava!</h2>
+            <!-- Profile Picture -->
+            <div class="profile-details">
+              <img src="../images/profilepic.jpg" alt="Profile Picture" class="profile-pic">
+              <div class="info">
+                <p>Email: <strong>ava@example.com</strong></p>
+              </div>
+            </div>
+
+      <h3>Purchase History:</h3>
+      <p>No purchase history available yet.</p>
     </section>
   </main>
+
+  <footer>
+    <p>&copy; 2025 MKJ Electronics</p>
+  </footer>
 </body>
 </html>
