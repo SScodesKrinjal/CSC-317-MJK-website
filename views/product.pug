@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title= `${product.name} - MKJ Electronics`
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    header
+      h1= product.name
+      nav
+        a(href="/") Home
+        a(href="/shop") Shop
+        a(href="/profile") Profile
+        a(href="/cart") Cart
+        a(href="/about") About
+        a(href="/faq") FAQ
+        a(href="/login") Login
+
+    main
+      img(src=`/images/${product.image}`, alt=product.name, style = "max-width:300px")
+      h2= product.name
+      p Price: $#{product.price}
+      p= product.description
+      a(href="/cart") Add to Cart

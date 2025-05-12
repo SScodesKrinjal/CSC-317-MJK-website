@@ -1,0 +1,29 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title Shop - MKJ Electronics
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        header 
+            h1 Shop 
+            nav 
+                a(href="/") Home 
+                a(href="/shop") Shop 
+                a(href="/profile") Profile 
+                a(href="/cart") Cart 
+                a(href="/about") About 
+                a(href="/faq") FAQ 
+                a(href="/login") Login 
+
+    main 
+        h2 Our Products 
+        p Check out our wide range of electronics. More Coming Soon! 
+
+    .product-grid
+        each product in products 
+            .product-card 
+                img(src=`/images/${product.image}`, alt=product.name)
+                h4=product.name 
+                p=`$${product.price}`
+                a.product-link(href=`/product/${product.slug}`) View Product
