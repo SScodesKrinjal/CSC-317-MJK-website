@@ -34,7 +34,7 @@ app.use('/product', productsRouter);
 app.use('/cart', cartRouter);
 app.use('/about', aboutRouter);
 app.use('/faq', faqRouter);
-app.use('/login', authRouter);
+app.use('/', authRouter);
 app.use('/profile', profileRouter);
 
 // Start the server

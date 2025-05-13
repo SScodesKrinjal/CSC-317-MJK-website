@@ -18,7 +18,7 @@ html(lang="en")
         a(href="/login") Login
 
     main
-      img(src="/images/" + product.token + ".jpg", alt=product.title, style="max-width:300px")
+      img(src="/images/" + product.image, alt=product.title)
       h2= product.title
       p Price: $#{product.price}
       p= product.description
