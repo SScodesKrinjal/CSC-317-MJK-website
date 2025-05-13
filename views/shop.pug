@@ -20,10 +20,10 @@ html(lang="en")
         h2 Our Products 
         p Check out our wide range of electronics. More Coming Soon! 
 
-    .product-grid
-        each product in products 
-            .product-card 
-                img(src=`/images/${product.image}`, alt=product.name)
-                h4=product.name 
-                p=`$${product.price}`
-                a.product-link(href=`/product/${product.slug}`) View Product
+        .product-grid
+            each product in products 
+                .product-card 
+                    img(src="/images/" + product.token + ".jpg", alt=product.title)
+                    h4= product.title
+                    p Price: $#{product.price}
+                    a.product-link(href="/products/" + product.id) View Product

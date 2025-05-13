@@ -1,3 +1,4 @@
+//delete this file after everything works, this is just for testing/debugging
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 

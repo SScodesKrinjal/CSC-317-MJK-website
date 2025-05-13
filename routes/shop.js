@@ -5,10 +5,11 @@ const path = require('path');
 
 const dbPath = path.join(__dirname, '..', 'database', 'products.db');
 
+//route to display all products
 router.get('/', (req, res) => {
   const db = new sqlite3.Database(dbPath);
 
-  db.all('SELECT * FROM products LIMIT 4', [], (err, products) => {  // only show 4 featured products
+  db.all('SELECT * FROM products', [], (err, products) => {
     db.close();
 
     if (err) {
@@ -16,11 +17,7 @@ router.get('/', (req, res) => {
       return res.status(500).send('Database error');
     }
 
-    res.render('index', {
-      products,
-      userId: req.session.userId,
-      username: req.session.username
-    });
+    res.render('shop', { products });
   });
 });
 

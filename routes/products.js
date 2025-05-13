@@ -5,10 +5,13 @@ const path = require('path');
 
 const dbPath = path.join(__dirname, '..', 'database', 'products.db');
 
-router.get('/', (req, res) => {
+//Fetch product by slug
+router.get('/:slug', (req, res) => {
+  const productSlug = req.params.slug; 
+
   const db = new sqlite3.Database(dbPath);
 
-  db.all('SELECT * FROM products LIMIT 4', [], (err, products) => {  // only show 4 featured products
+  db.get('SELECT * FROM products WHERE slug = ?', [productSlug], (err, product) => {
     db.close();
 
     if (err) {
@@ -16,12 +19,13 @@ router.get('/', (req, res) => {
       return res.status(500).send('Database error');
     }
 
-    res.render('index', {
-      products,
-      userId: req.session.userId,
-      username: req.session.username
-    });
+    if (!product) {
+      return res.status(404).render('404');
+    }
+
+    res.render('product', { product });  // passinthe full product object
   });
 });
 
 module.exports = router;
+
