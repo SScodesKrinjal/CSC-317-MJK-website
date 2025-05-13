@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 // Route to render FAQ page
-router.get('/faq', (req, res) => {
+router.get('/', (req, res) => {
   res.render('faq');
 });
 

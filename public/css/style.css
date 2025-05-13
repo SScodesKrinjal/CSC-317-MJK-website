@@ -340,3 +340,17 @@
   form button:hover {
     background-color: #6e9cca;
   }
+
+  .btn-register {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 20px;
+  }
+  .btn-register:hover {
+    background-color: #45a049;
+  }

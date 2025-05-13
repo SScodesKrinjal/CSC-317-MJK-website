@@ -11,23 +11,23 @@ html(lang="en")
       nav
         a(href="/") Home
         a(href="/shop") Shop
-        a(href="../profile/profile.html") Profile
-        a(href="cart.html" class="active") Cart
-        a(href="../about/about.html") About
-        a(href="../faq/faq.html") FAQ
-        a(href="../login/login.html") Login
+        a(href="/profile") Profile
+        a(href="/cart") Cart
+        a(href="/about") About
+        a(href="/faq") FAQ
+        a(href="/login") Login
 
     main
       section.cart
         h2 Your Shopping Cart
         
-        // If the cart is empty
+        //- If the cart is empty
         if cartItems.length === 0
           div.empty-cart
             p Your cart is currently empty.
             a(href="/shop" class="cta-btn") Browse Products
         
-        // If the cart has items
+        //- If the cart has items
         else
           div.cart-items
             each item in cartItems
@@ -45,12 +45,10 @@ html(lang="en")
           div.cart-summary
             h3 Total: $#{total}
              a(href="/checkout" class="cta-btn") Proceed to Checkout
+    
     footer
-  
-      div.footer-links 
-      
-        a(href="../about/about.html") About Us
-        a(href="../faq/faq.html") FAQ
-        a(href="../contact/contact.html") Contact
-      p &copy; 2025 MKJ Electronics
-
+      .footer-links
+        a(href="/about") About Us
+        a(href="/faq") FAQ
+        a(href="/contact") Contact
+      p &copy; 2025 MKJ Electronics | All Rights Reserved

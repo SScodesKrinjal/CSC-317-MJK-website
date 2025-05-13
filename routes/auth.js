@@ -4,7 +4,7 @@ const router = express.Router();
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
-const dbPath = path.join(__dirname, '..', 'databases', 'users.sqlite');
+const dbPath = path.join(__dirname, '..', 'database', 'users.sqlite');
 
 function getDb() {
   return new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
@@ -41,7 +41,10 @@ router.post('/register', async (req, res) => {
         db.close();
         if (err) return res.status(500).json({ error: 'Error creating user' });
 
-        res.status(200).json({ success: true, message: 'Registration successful!' });
+        req.session.userId = this.lastID;
+        req.session.username = username;
+
+        res.redirect('/profile');
       });
   });
 });
@@ -66,7 +69,7 @@ router.post('/login', async (req, res) => {
     req.session.username = user.username;
 
     db.close();
-    res.status(200).json({ success: true, redirect: '/profile' });  // <-- small fix: redirect to /profile not /settings
+    res.redirect('/profile');
   });
 });
 

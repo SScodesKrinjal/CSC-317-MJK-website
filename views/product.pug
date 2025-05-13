@@ -18,8 +18,10 @@ html(lang="en")
         a(href="/login") Login
 
     main
-      img(src="/images/" + product.image, alt=product.title)
+      img(src="/images/" + product.image, alt=product.title, style="max-width: 300px")
       h2= product.title
       p Price: $#{product.price}
       p= product.description
-      a(href="/cart") Add to Cart
+      form(action="/cart/add", method="POST")
+        input(type="hidden", name="productId", value=product.id)
+        button(type="submit") Add to Cart

@@ -64,6 +64,60 @@ router.get('/', (req, res) => {
   });
 });
 
+// POST route to add an item to the cart
+router.post('/add', (req, res) => {
+  if (!req.session?.userId) {
+    return res.redirect('/login');  // Redirect to login if user is not logged in
+  }
+
+  const { productId } = req.body;
+
+  const db = getDb();
+
+  // Check if product already exists in the cart
+  db.get(
+    'SELECT id, quantity FROM cart WHERE user_id = ? AND product_id = ?',
+    [req.session.userId, productId],
+    (err, row) => {
+      if (err) {
+        console.error('Error checking cart:', err);
+        db.close();
+        return res.status(500).send('Database error');
+      }
+
+      if (row) {
+        // Product already in cart — update quantity
+        db.run(
+          'UPDATE cart SET quantity = quantity + 1 WHERE id = ?',
+          [row.id],
+          (err2) => {
+            db.close();
+            if (err2) {
+              console.error('Error updating cart:', err2);
+              return res.status(500).send('Database error');
+            }
+            res.redirect('/cart');  // Redirect to cart page
+          }
+        );
+      } else {
+        // Product not in cart — insert it
+        db.run(
+          'INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, 1)',
+          [req.session.userId, productId],
+          (err3) => {
+            db.close();
+            if (err3) {
+              console.error('Error inserting to cart:', err3);
+              return res.status(500).send('Database error');
+            }
+            res.redirect('/cart');  // Redirect to cart page
+          }
+        );
+      }
+    }
+  );
+});
+
 //POST route to remove an item from cart
 router.post('/remove', (req, res) => {
   if (!req.session?.userId) {
@@ -86,7 +140,7 @@ router.post('/remove', (req, res) => {
         console.error('Error removing item from cart:', err);
         return res.status(500).json({ error: 'Error removing item from cart' });
       }
-      res.json({ success: true });
+      res.redirect('/cart');
     }
   );
 });

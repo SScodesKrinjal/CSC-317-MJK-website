@@ -8,6 +8,11 @@ const app = express();
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));  //tells Express where to find our Pug templates
 
+//middleware to parse form data
+app.use(express.urlencoded({ extended: true}));
+
+app.use(express.json());
+
 //static files (CSS, images, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -26,7 +31,8 @@ const aboutRouter = require('./routes/about');
 const faqRouter = require('./routes/faq');
 const authRouter = require('./routes/auth');
 const profileRouter = require('./routes/profile');
-
+const loginRouter = require('./routes/login');
+const registerRouter = require('./routes/register');
 
 app.use('/', indexRouter);
 app.use('/shop', shopRouter);
@@ -36,6 +42,9 @@ app.use('/about', aboutRouter);
 app.use('/faq', faqRouter);
 app.use('/', authRouter);
 app.use('/profile', profileRouter);
+app.use('/login', loginRouter);
+app.use('/register', registerRouter);
+app.use('/auth', authRouter);
 
 // Start the server
 const PORT = process.env.PORT || 3000;

@@ -1,0 +1,44 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Register - MKJ Electronics
+    link(rel="stylesheet", href="../css/style.css")
+
+  body
+    header
+      h1 MKJ Electronics
+      nav
+        a(href="/") Home
+        a(href="/shop") Shop
+        a(href="/profile") Profile
+        a(href="/cart") Cart
+        a(href="/about") About
+        a(href="/faq") FAQ
+        a(href="/login") Login
+
+    main
+      h1 Register
+
+      // Display error message if it exists
+      if errorMessage
+        p(style="color: red;") #{errorMessage}
+
+      form(method="POST", action="/auth/register")
+        label(for="username") Username:
+        input(type="text", name="username", required)
+        br
+
+        label(for="password") Password:
+        input(type="password", name="password", required)
+        br
+
+        label(for="confirm_password") Confirm Password:
+        input(type="password", name="confirm_password", required)
+        br
+
+        label(for="real_name") Real Name (optional):
+        input(type="text", name="real_name")
+        br
+
+        button(type="submit") Register

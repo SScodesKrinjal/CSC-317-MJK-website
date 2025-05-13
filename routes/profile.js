@@ -59,7 +59,7 @@ router.get('/', (req, res) => {
             
             db.close();
             res.render('profile', { 
-                user,
+                user: user,
                 purchaseHistory: purchaseHistory || []
             });
         });

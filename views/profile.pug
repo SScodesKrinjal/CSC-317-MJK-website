@@ -1,0 +1,71 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Profile - MKJ Electronics
+    link(rel="stylesheet", href="../css/style.css")
+
+  body
+    header
+      h1 MKJ Electronics
+      nav
+        a(href="/") Home
+        a(href="/shop") Shop
+        a(href="/profile") Profile
+        a(href="/cart") Cart
+        a(href="/about") About
+        a(href="/faq") FAQ
+        a(href="/login") Login
+
+    main
+      section.profile
+        // Check if user is logged in
+        if user
+          h2 Welcome, #{user.username}!
+          .profile-details
+            img.profile-pic(src='../images/profilepic.jpg', alt="Profile Picture")
+            .info
+              if user.real_name
+                p
+                  | Name: 
+                  strong #{user.real_name}
+
+          h3 Purchase History:
+          if purchaseHistory.length
+            ul
+              each purchase in purchaseHistory
+                li #{purchase.name} - #{purchase.purchase_date}
+          else
+            p No purchase history available yet.
+
+          // Update Password Form
+          form(method="POST", action="/profile/update-password")
+            h3 Update Password
+            label(for="currentPassword") Current Password
+            input(type="password", id="currentPassword", name="currentPassword", required)
+            label(for="newPassword") New Password
+            input(type="password", id="newPassword", name="newPassword", required)
+            label(for="confirmPassword") Confirm New Password
+            input(type="password", id="confirmPassword", name="confirmPassword", required)
+            button(type="submit") Update Password
+
+          // Update Username Form
+          form(method="POST", action="/profile/update-username")
+            h3 Update Username
+            label(for="username") New Username
+            input(type="text", id="username", name="username", value=user.username, required)
+            button(type="submit") Update Username
+
+          // Logout Form
+          form(method="POST", action="/profile/logout")
+            button(type="submit") Logout
+        else
+          h2 Welcome!
+          p Please log in to see your profile details.
+          // Button to redirect to login page
+          a(href="/login")
+            button(type="button") Log in
+
+    footer
+      p &copy; 2025 MKJ Electronics
