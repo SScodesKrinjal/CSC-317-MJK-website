@@ -8,7 +8,7 @@ const dbPath = path.join(__dirname, '..', 'database', 'products.db');
 router.get('/', (req, res) => {
   const db = new sqlite3.Database(dbPath);
 
-  db.all('SELECT * FROM products LIMIT 4', [], (err, products) => {  // only show 4 featured products
+  db.all('SELECT * FROM products LIMIT 6', [], (err, products) => {
     db.close();
 
     if (err) {
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
       return res.status(500).send('Database error');
     }
 
-    res.render('index', {
+    res.render('index', { 
       products,
       userId: req.session.userId,
       username: req.session.username

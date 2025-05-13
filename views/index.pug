@@ -34,7 +34,7 @@ html(lang="en")
             img(src="/images/smartphone.png", alt="Smartphones")
           .category-card
             h4 Prebuilt PC's
-            img(src="/images/PC.webp", alt="PC")
+            img(src="/images/PC.webp", alt="Prebuilt PC's")
           .category-card
             h4 Keyboards
             img(src="/images/keyboard.jpg", alt="Keyboards")
@@ -45,41 +45,12 @@ html(lang="en")
       section.product-highlight
         h3 Featured Products
         .product-grid
-          .product-card
-            img(src="/images/laptop.png", alt="Gaming Laptop X200")
-            h4 Gaming Laptop X200
-            p $999.00
-            a.product-link(href="/product/gaming-laptop-x200") View Product
-          .product-card
-            img(src="/images/ipad.jpg", alt="iPad")
-            h4 iPad
-            p $999,999,999.00
-            a.product-link(href="/product/ipad") View Product
-          .product-card
-            img(src="/images/tv.jpg", alt="FlatScreen Television")
-            h4 FlatScreen Television
-            p $2.00
-            a.product-link(href="/product/flatscreen-television") View Product
-          .product-card
-            img(src="/images/switchtwo.jpg", alt="Nintendo Switch 2")
-            h4 Nintendo Switch 2
-            p $Your Soul
-            a.product-link(href="/product/nintendo-switch-2") View Product
-          .product-card
-            img(src="/images/valorantcard.jpg", alt="Valorant 1000RP Gift Card")
-            h4 Valorant 1000RP Gift Card
-            p $999,999.00
-            a.product-link(href="/product/valorant-1000rp-gift-card") View Product
-          .product-card
-            img(src="/images/robuxcard.jpg", alt="Roblox Gift Card 1000 Robux")
-            h4 Roblox Gift Card 1000 Robux
-            p $999.00
-            a.product-link(href="/product/roblox-gift-card-1000-robux") View Product
-          .product-card
-            img(src="/images/keyboard.jpg", alt="Gaming Keyboard")
-            h4 Gaming Keyboard
-            p $999,999,991.00
-            a.product-link(href="/product/gaming-keyboard") View Product
+          each product in products
+            .product-card
+              img(src="/images/" + product.image, alt=product.title)
+              h4= product.title
+              p Price: $#{product.price}
+              a.product-link(href="/product/" + product.slug) View Product
 
     footer
       .footer-links
