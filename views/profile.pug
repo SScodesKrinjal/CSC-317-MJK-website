@@ -5,7 +5,10 @@ html(lang="en")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     title Profile - MKJ Electronics
     link(rel="stylesheet", href="../css/style.css")
-
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css")
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap", rel="stylesheet")
   body
     header
       h1 MKJ Electronics
@@ -20,7 +23,6 @@ html(lang="en")
 
     main
       section.profile
-        // Check if user is logged in
         if user
           h2 Welcome, #{user.username}!
           .profile-details
@@ -39,31 +41,48 @@ html(lang="en")
           else
             p No purchase history available yet.
 
-          // Update Password Form
-          form(method="POST", action="/profile/update-password")
-            h3 Update Password
-            label(for="currentPassword") Current Password
-            input(type="password", id="currentPassword", name="currentPassword", required)
-            label(for="newPassword") New Password
-            input(type="password", id="newPassword", name="newPassword", required)
-            label(for="confirmPassword") Confirm New Password
-            input(type="password", id="confirmPassword", name="confirmPassword", required)
-            button(type="submit") Update Password
+          //Divider
+          hr.divider
 
-          // Update Username Form
-          form(method="POST", action="/profile/update-username")
-            h3 Update Username
-            label(for="username") New Username
-            input(type="text", id="username", name="username", value=user.username, required)
-            button(type="submit") Update Username
+          //Password Form
+          .profile-card
+            form(method="POST", action="/profile/update-password")
+              h3 
+                i.fas.fa-lock
+                |  Update Password
+              label(for="currentPassword") Current Password
+              input(type="password", id="currentPassword", name="currentPassword", required)
 
-          // Logout Form
-          form(method="POST", action="/profile/logout")
-            button(type="submit") Logout
+              label(for="newPassword") New Password
+              input(type="password", id="newPassword", name="newPassword", required)
+
+              label(for="confirmPassword") Confirm New Password
+              input(type="password", id="confirmPassword", name="confirmPassword", required)
+
+              button(type="submit") Update Password
+
+          //Username Form
+          .profile-card
+            form(method="POST", action="/profile/update-username")
+              h3
+                i.fas.fa-user-edit
+                |  Update Username
+              label(for="username") New Username
+              input(type="text", id="username", name="username", value=user.username, required)
+
+              button(type="submit") Update Username
+
+          //Logout Form
+          .profile-card
+            form(method="POST", action="/profile/logout")
+              h3
+                i.fas.fa-sign-out-alt
+                |  Logout
+              button(type="submit") Logout
+
         else
           h2 Welcome!
           p Please log in to see your profile details.
-          // Button to redirect to login page
           a(href="/login")
             button(type="button") Log in
 
