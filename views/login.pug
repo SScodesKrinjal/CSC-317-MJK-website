@@ -21,6 +21,8 @@ html(lang="en")
 
     main
       h1.Login-header Login
+      if error
+        p(style="color: red; font-weight: bold;") #{error}
       form(action="/auth/login", method="POST")
         label(for="username")
           | Username:

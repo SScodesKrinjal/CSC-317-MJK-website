@@ -22,6 +22,8 @@ html(lang="en")
 
     main
       section.hero
+        if message
+          p(style="color: green; font-weight: bold;") #{message}
         h2 Welcome to MKJ Electronics
         p Your one-stop shop for the latest in tech and electronics!
         a.cta-btn(href="/shop") Shop Now
@@ -44,6 +46,9 @@ html(lang="en")
           .category-card
             h4 Gift Cards
             img(src="/images/giftcard.png", alt="Gift Cards")
+          .category-card
+            h4 Gaming
+            img(src="/images/switchtwo.jpg", alt="Gaming")
 
       section.product-highlight
         h3 Featured Products

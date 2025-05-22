@@ -118,6 +118,34 @@ router.post('/add', (req, res) => {
   );
 });
 
+// POST route to update quantity of an item in cart
+router.post('/update-quantity', (req, res) => {
+  if (!req.session?.userId) {
+    return res.status(401).json({ error: 'Not logged in' });
+  }
+
+  const { cartId, quantity } = req.body;
+
+  if (!cartId || !quantity || quantity < 1) {
+    return res.status(400).json({ error: 'Invalid cart ID or quantity' });
+  }
+
+  const db = getDb();
+
+  db.run(
+    'UPDATE cart SET quantity = ? WHERE id = ? AND user_id = ?',
+    [quantity, cartId, req.session.userId],
+    (err) => {
+      db.close();
+      if (err) {
+        console.error('Error updating quantity:', err);
+        return res.status(500).json({ error: 'Error updating quantity' });
+      }
+      res.redirect('/cart');
+    }
+  );
+});
+
 //POST route to remove an item from cart
 router.post('/remove', (req, res) => {
   if (!req.session?.userId) {

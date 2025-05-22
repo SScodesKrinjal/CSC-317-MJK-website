@@ -11,6 +11,8 @@ app.set('views', path.join(__dirname, 'views'));  //tells Express where to find 
 //middleware to parse form data
 app.use(express.urlencoded({ extended: true}));
 
+app.use('/images', express.static(path.join(__dirname, 'public', 'images')));
+
 app.use(express.json());
 
 //static files (CSS, images, etc.)

@@ -35,15 +35,21 @@ html(lang="en")
           div.cart-items
             each item in cartItems
               div.cart-item
-                img(src="/images/#{item.image}", alt=item.title)
-                div.item-details
-                h4= item.title
-                  p Price: $#{item.price}
-                  label Quantity:
-                  input(type="number", value=item.quantity || 1, min="1", name="quantity")
+                dif.left-col
+                  img(src=`/images/${item.image}` alt=item.title)
+                  div.item-details
+                  h4= item.title
+                    p Price: $#{item.price}
+
+                div.right-col
+                  form(action="/cart/update-quantity", method="POST")
+                    input(type="hidden", name="cartId", value=item.cart_id)
+                    label(for="quantity") Quantity:
+                    input(type="number", name="quantity", value=item.quantity || 1, min="1")
+                    button(type="submit", class="cart-btn") Update
                   form(action="/cart/remove", method="POST")
                     input(type="hidden", name="cartId", value=item.cart_id)
-                    button(type="submit", class="remove-btn") Remove
+                    button(type="submit", class="cart-btn") Remove
 
           div.cart-summary
             h3 Total: $#{total}

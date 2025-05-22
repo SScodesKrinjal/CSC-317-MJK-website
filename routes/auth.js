@@ -17,7 +17,7 @@ router.post('/register', async (req, res) => {
   const { username, password, confirm_password, real_name } = req.body;
 
   if (password !== confirm_password) {
-    return res.status(400).json({ error: 'Passwords do not match' });
+    return res.status(400).render('register', { error: 'Passwords do not match' });
   }
 
   const db = getDb();
@@ -25,12 +25,12 @@ router.post('/register', async (req, res) => {
   db.get('SELECT username FROM users WHERE username = ?', [username], async (err, existingUser) => {
     if (err) {
       db.close();
-      return res.status(500).json({ error: 'Database error' });
+      return res.status(500).render('register', { error: 'Database error' });
     }
 
     if (existingUser) {
       db.close();
-      return res.status(400).json({ error: 'Username already taken' });
+      return res.status(400).render('register', { error: 'Username already taken' });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -39,7 +39,7 @@ router.post('/register', async (req, res) => {
       [username, hashedPassword, real_name || null],
       function(err) {
         db.close();
-        if (err) return res.status(500).json({ error: 'Error creating user' });
+        if (err) return res.status(500).render('register', { error: 'Error creating user' });
 
         req.session.userId = this.lastID;
         req.session.username = username;
@@ -57,12 +57,12 @@ router.post('/login', async (req, res) => {
   db.get('SELECT * FROM users WHERE username = ?', [username], async (err, user) => {
     if (err) {
       db.close();
-      return res.status(500).json({ error: 'Database error' });
+      return res.status(500).render('login', { error: 'Database error' });
     }
 
     if (!user || !(await bcrypt.compare(password, user.password))) {
       db.close();
-      return res.status(401).json({ error: 'Invalid username or password' });
+      return res.status(401).render('login', { error: 'Invalid username or password' });
     }
 
     req.session.userId = user.id;

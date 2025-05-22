@@ -19,7 +19,8 @@ router.get('/', (req, res) => {
     res.render('index', { 
       products,
       userId: req.session.userId,
-      username: req.session.username
+      username: req.session.username,
+      message: req.query.message
     });
   });
 });

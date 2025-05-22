@@ -23,6 +23,10 @@ html(lang="en")
 
     main
       section.profile
+        if error
+          p(style="color: red; font-weight: bold;") #{error}
+        if message
+          p(style="color: green; font-weight: bold;") #{message}
         if user
           h2 Welcome, #{user.username}!
           .profile-details

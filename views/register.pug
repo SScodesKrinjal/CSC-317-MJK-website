@@ -23,8 +23,8 @@ html(lang="en")
       h1 Register
 
       // Display error message if it exists
-      if errorMessage
-        p(style="color: red;") #{errorMessage}
+      if error
+        p(style="color: red;") #{error}
 
       form(method="POST", action="/auth/register")
         label(for="username") Username:
