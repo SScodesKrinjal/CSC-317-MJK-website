@@ -29,24 +29,47 @@ router.get('/search', (req, res) => {
   const keyword = req.query.q || '';
   const db = new sqlite3.Database(dbPath);
 
+  // Search products by title (case-insensitive, no description)
   db.all(
-    'SELECT * FROM products WHERE title LIKE ? OR description LIKE ?',
-    [`%${keyword}%`, `%${keyword}%`],
+    `SELECT * FROM products WHERE LOWER(title) LIKE LOWER(?)`,
+    [`%${keyword}%`],
     (err, products) => {
-      db.close();
-
       if (err) {
+        db.close();
         console.error('Search error:', err);
         return res.status(500).send('Search error');
       }
 
-      res.render('index', {
-        products,
-        searchQuery: keyword,
-        userId: req.session.userId,
-        username: req.session.username
-      });
+      // If no results found, get 6 default/featured products
+      if (products.length === 0) {
+        db.all('SELECT * FROM products LIMIT 6', [], (err2, featuredProducts) => {
+          db.close();
+          if (err2) {
+            console.error('Fallback error:', err2);
+            return res.status(500).send('Fallback error');
+          }
+
+          return res.render('index', {
+            products: [],
+            featuredProducts,
+            searchQuery: keyword,
+            userId: req.session.userId,
+            username: req.session.username
+          });
+        });
+      } else {
+        db.close();
+        res.render('index', {
+          products,
+          featuredProducts: [],
+          searchQuery: keyword,
+          userId: req.session.userId,
+          username: req.session.username
+        });
+      }
     }
   );
 });
+
+
 module.exports = router;

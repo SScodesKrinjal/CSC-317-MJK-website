@@ -33,6 +33,34 @@ html(lang="en")
 
         a.cta-btn(href="/shop") Shop Now
 
+      section.product-highlight
+        h3
+          if searchQuery 
+            | Search Results for "#{searchQuery}"
+          else 
+            | Featured Products
+          
+
+        if products.length === 0
+          p No products found.
+          if featuredProducts && featuredProducts.length > 0
+            p Showing featured products instead:
+            .product-grid
+              each product in featuredProducts 
+                .product-card
+                  img(src="/images/" + product.image, alt=product.title)
+                  h4= product.title
+                  p Price: $#{product.price}
+                  a.product-link(href="/product/" + product.slug) View Product
+        else
+         .product-grid
+          each product in products
+            .product-card
+              img(src="/images/" + product.image, alt=product.title)
+              h4!= product.highlightedTitle
+              p Price: $#{product.price}
+              a.product-link(href="/product/" + product.slug) View Product
+
       section.categories
         h3 Shop Our Categories
         .category-grid
@@ -55,19 +83,6 @@ html(lang="en")
             h4 Gaming
             img(src="/images/switchtwo.jpg", alt="Gaming")
 
-      section.product-highlight
-        h3 #{searchQuery ? `Search Results for "${searchQuery}"` : "Featured Products"}
-
-        if products.length === 0
-          p No products found.
-        else
-         .product-grid
-          each product in products
-            .product-card
-              img(src="/images/" + product.image, alt=product.title)
-              h4= product.title
-              p Price: $#{product.price}
-              a.product-link(href="/product/" + product.slug) View Product
 
     footer
       .footer-links
