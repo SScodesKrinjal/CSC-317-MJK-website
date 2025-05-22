@@ -1,3 +1,4 @@
+// users-setup.js
 const sqlite3 = require('sqlite3').verbose();
 const path = require('path');
 
@@ -11,9 +12,9 @@ const db = new sqlite3.Database(dbPath, (err) => {
   }
 });
 
-//Create tables
+// Create tables
 db.serialize(() => {
-  //USERS table
+  // USERS table
   db.run(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -23,31 +24,13 @@ db.serialize(() => {
     )
   `);
 
-  //PURCHASES table
-  db.run(`
-    CREATE TABLE IF NOT EXISTS purchases (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      user_id INTEGER NOT NULL,
-      product_id INTEGER NOT NULL,
-      purchase_date TEXT DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY (user_id) REFERENCES users(id)
-    )
-  `);
+  // REMOVE THE PURCHASES TABLE CREATION FROM HERE
+  // REMOVE THE CART TABLE CREATION FROM HERE
 
-  //CART table
-  db.run(`
-    CREATE TABLE IF NOT EXISTS cart (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      user_id INTEGER NOT NULL,
-      product_id INTEGER NOT NULL,
-      FOREIGN KEY (user_id) REFERENCES users(id)
-    )
-  `);
-
-  console.log('Tables users, purchases, and cart created successfully!');
+  console.log('Table users created successfully!'); // Updated message
 });
 
-//Close connection
+// Close connection
 db.close((err) => {
   if (err) {
     console.error('Error closing database:', err.message);
@@ -55,4 +38,3 @@ db.close((err) => {
     console.log('Database connection closed.');
   }
 });
-

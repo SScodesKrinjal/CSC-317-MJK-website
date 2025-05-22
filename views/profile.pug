@@ -9,6 +9,7 @@ html(lang="en")
     link(rel="preconnect", href="https://fonts.googleapis.com")
     link(rel="preconnect", href="https://fonts.gstatic.com" crossorigin)
     link(href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap", rel="stylesheet")
+
   body
     header
       h1 MKJ Electronics
@@ -34,52 +35,61 @@ html(lang="en")
             .info
               if user.real_name
                 p
-                  | Name: 
+                  | Name:
                   strong #{user.real_name}
 
-          h3 Purchase History:
-          if purchaseHistory.length
-            ul
-              each purchase in purchaseHistory
-                li #{purchase.name} - #{purchase.purchase_date}
-          else
-            p No purchase history available yet.
+          .profile-card
+            h3 Your Purchases
+            if purchases && purchases.length > 0
+              .purchase-history-grid
+                each purchase in purchases
+                  .purchase-item
+                    img(src=`/images/${purchase.image}` alt=purchase.product_title)
+                    .purchase-details
+                      h4= purchase.product_title
+                      p Price: $#{Number(purchase.price).toFixed(2)}
+                      p Quantity: #{purchase.quantity}
+                      p Purchased On: #{purchase.purchase_date}
+                    .purchase-actions
+                      form(action="/cart/add" method="POST")
+                        input(type="hidden" name="productId" value=purchase.product_id)
+                        button(type="submit" class="buy-again-btn") Buy Again
 
-          //Divider
+            else
+              p You haven't made any purchases yet.
+
           hr.divider
 
-          //Password Form
           .profile-card
+            h3 Account Actions
+
             form(method="POST", action="/profile/update-password")
-              h3 
+              h4
                 i.fas.fa-lock
                 |  Update Password
-              label(for="currentPassword") Current Password
+              label(for="currentPassword") Current Password:
               input(type="password", id="currentPassword", name="currentPassword", required)
 
-              label(for="newPassword") New Password
+              label(for="newPassword") New Password:
               input(type="password", id="newPassword", name="newPassword", required)
 
-              label(for="confirmPassword") Confirm New Password
+              label(for="confirmPassword") Confirm New Password:
               input(type="password", id="confirmPassword", name="confirmPassword", required)
 
               button(type="submit") Update Password
+            br
 
-          //Username Form
-          .profile-card
             form(method="POST", action="/profile/update-username")
-              h3
+              h4
                 i.fas.fa-user-edit
                 |  Update Username
-              label(for="username") New Username
+              label(for="username") New Username:
               input(type="text", id="username", name="username", value=user.username, required)
-
               button(type="submit") Update Username
+            br
 
-          //Logout Form
-          .profile-card
             form(method="POST", action="/profile/logout")
-              h3
+              h4
                 i.fas.fa-sign-out-alt
                 |  Logout
               button(type="submit") Logout
@@ -89,7 +99,6 @@ html(lang="en")
           p Please log in to see your profile details.
           a.btn-register(href="/login") Login
 
-
 .homepage
   footer
     .footer-links
@@ -97,4 +106,3 @@ html(lang="en")
       a(href="/faq") FAQ
       a(href="/contact") Contact
     p &copy; 2025 MKJ Electronics. All rights reserved.
-

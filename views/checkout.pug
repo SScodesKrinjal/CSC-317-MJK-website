@@ -7,6 +7,7 @@ html(lang="en")
     link(rel="preconnect", href="https://fonts.googleapis.com")
     link(rel="preconnect", href="https://fonts.gstatic.com" crossorigin)
     link(href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap", rel="stylesheet")
+
   body
     header
       h1 MKJ Electronics
@@ -20,34 +21,43 @@ html(lang="en")
         a(href="/login") Login
 
     main
-      h1 Checkout
+      .checkout-page
+        h1 Checkout
 
-      // Display error message if it exists
-      if error
-        p(style="color: red;") #{error}
+        if error
+          p(style="color: red;") #{error}
 
-      .order-summary
-        h2 Order Summary
-        each item in cartItems
-          div
-            span #{item.title} - $#{item.price.toFixed(2)}
-        h3 Total: $#{total}
+        .order-summary
+          h2 Order Summary
+          if cartItems && cartItems.length > 0
+            .cart-items-list
+              each item in cartItems
+                .cart-item
+                  .left-col
+                    img(src=`/images/${item.image}` alt=item.title)
+                    .item-details
+                      h4= item.title
+                      p Price: $#{Number(item.price).toFixed(2)}
+                      p Quantity: #{item.quantity}
+            h3 Total: $#{total}
+          else
+            p Your cart is empty.
 
-      form#payment-form(method="POST", action="/checkout")
-        h2 Payment Information
-        label(for="creditCard") Credit Card Number:
-        input#creditCard(type="text", name="creditCard", required)
-        br
+        form#payment-form(method="POST", action="/checkout")
+          h2 Payment Information
+          label(for="creditCard") Credit Card Number:
+          input#creditCard(type="text", name="creditCard", required)
+          br
 
-        label(for="expiryDate") Expiry Date (MM/YY):
-        input#expiryDate(type="text", name="expiryDate", required)
-        br
+          label(for="expiryDate") Expiry Date (MM/YY):
+          input#expiryDate(type="text", name="expiryDate", required)
+          br
 
-        label(for="cvv") CVV:
-        input#cvv(type="text", name="cvv", required)
-        br
+          label(for="cvv") CVV:
+          input#cvv(type="text", name="cvv", required)
+          br
 
-        button(type="submit") Complete Purchase
+          button(type="submit") Complete Purchase
 
     script.
       document.getElementById('payment-form').addEventListener('submit', async (e) => {

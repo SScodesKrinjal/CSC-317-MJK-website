@@ -57,7 +57,7 @@ html(lang="en")
           each product in products
             .product-card
               img(src="/images/" + product.image, alt=product.title)
-              h4!= product.highlightedTitle
+              h4!= product.title
               p Price: $#{product.price}
               a.product-link(href="/product/" + product.slug) View Product
 
