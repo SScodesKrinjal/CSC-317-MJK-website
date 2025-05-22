@@ -20,12 +20,17 @@ html(lang="en")
         a(href="/faq") FAQ
         a(href="/login") Login
 
+    form(action="/search", method="GET", class="search-form")
+      input(type="text", name="q", placeholder="Search for products...", value=searchQuery || '')
+      button(type="submit") Search
+
     main
       section.hero
         if message
           p(style="color: green; font-weight: bold;") #{message}
         h2 Welcome to MKJ Electronics
         p Your one-stop shop for the latest in tech and electronics!
+
         a.cta-btn(href="/shop") Shop Now
 
       section.categories
@@ -51,8 +56,12 @@ html(lang="en")
             img(src="/images/switchtwo.jpg", alt="Gaming")
 
       section.product-highlight
-        h3 Featured Products
-        .product-grid
+        h3 #{searchQuery ? `Search Results for "${searchQuery}"` : "Featured Products"}
+
+        if products.length === 0
+          p No products found.
+        else
+         .product-grid
           each product in products
             .product-card
               img(src="/images/" + product.image, alt=product.title)

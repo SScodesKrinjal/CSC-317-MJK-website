@@ -36,13 +36,13 @@ const profileRouter = require('./routes/profile');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
 
+
 app.use('/', indexRouter);
 app.use('/shop', shopRouter);
 app.use('/product', productsRouter);
 app.use('/cart', cartRouter);
 app.use('/about', aboutRouter);
 app.use('/faq', faqRouter);
-app.use('/', authRouter);
 app.use('/profile', profileRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);

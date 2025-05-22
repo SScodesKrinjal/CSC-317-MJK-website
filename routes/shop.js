@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
       return res.status(500).send('Database error');
     }
 
-    res.render('shop', { products });
+    res.render('shop', { products, searchQuery: '' });
   });
 });
 

@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: "Lucida Sans", "Lucida Grande", sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Grande', sans-serif;
   line-height: 1.6;
   background-color: #f9f9f9;
   color: #333333;
@@ -59,7 +59,59 @@ main {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Shop Page Font Styling */
+.shop h1,
+.shop h2,
+.shop h3,
+.shop h4 {
+  font-family: 'Poetsen One', cursive;
+  color: #5c86b1;
+  text-align: center;
+}
+
+.shop p {
+  font-family: 'Arial', sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+
+/* About Page */
+.about h1,
+.about h2,
+.about h3 {
+  font-family: 'Poetsen One', cursive;  
+  color: #5c86b1;
+}
+
+.about p {
+  font-family: 'Arial', sans-serif; 
+}
+
+/* FAQ Page */
+.faq h1,
+.faq h2,
+.faq h3 {
+  font-family: 'Poetsen One', cursive;  
+  color: #5c86b1;
+}
+
+.faq p {
+  font-family: 'Arial', sans-serif;  
+}
+
 /*homepage*/
+.homepage h1,
+.homepage h2,
+.homepage h3,
+.homepage h4 {
+  font-family: 'Poetsen One', cursive;
+}
+
+.homepage p {
+  font-family: 'Arial', sans-serif;  
+}
+
 .homepage .hero {
   text-align: center;
   margin: 0 auto;
@@ -287,8 +339,8 @@ footer {
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   max-width: 1000px;
-  margin: 0 auto;
-  margin-top: 30px;
+  margin: 30px auto;
+  text-align: center;
 }
 
 .profile-details {
@@ -417,7 +469,7 @@ form button:hover {
 
 .cart-item {
   display: flex;
-  justify-content: space-between; /* pushes left and right columns apart */
+  justify-content: space-between; 
   align-items: center;
   padding: 10px 0;
   border-bottom: 1px solid #ccc;
@@ -453,4 +505,39 @@ form button:hover {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* Cart page's checkout Button */
+.cart-page .cta-btn {
+  background: linear-gradient(135deg, #5c86b1, #4a6f94);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: inline-block;
+  margin: 15px auto 0;
+  transition: all 0.3s ease;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+}
+
+.cart-page .cta-btn:hover {
+  background: linear-gradient(135deg, #6fa2d4, #3f5b78);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(92, 134, 177, 0.6);
+}
+
+.cart-summary {
+  display: flex;
+  justify-content: flex-end;  
+  align-items: center;       
+  margin-top: 20px;           
+}
+
+.cart-summary .cta-btn {
+  margin-left: auto;  
+  padding: 10px 10px; 
+  font-size: 1.1rem;  
 }

@@ -25,4 +25,28 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/search', (req, res) => {
+  const keyword = req.query.q || '';
+  const db = new sqlite3.Database(dbPath);
+
+  db.all(
+    'SELECT * FROM products WHERE title LIKE ? OR description LIKE ?',
+    [`%${keyword}%`, `%${keyword}%`],
+    (err, products) => {
+      db.close();
+
+      if (err) {
+        console.error('Search error:', err);
+        return res.status(500).send('Search error');
+      }
+
+      res.render('index', {
+        products,
+        searchQuery: keyword,
+        userId: req.session.userId,
+        username: req.session.username
+      });
+    }
+  );
+});
 module.exports = router;
