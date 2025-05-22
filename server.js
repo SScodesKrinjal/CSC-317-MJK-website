@@ -35,7 +35,7 @@ const authRouter = require('./routes/auth');
 const profileRouter = require('./routes/profile');
 const loginRouter = require('./routes/login');
 const registerRouter = require('./routes/register');
-
+const checkoutRouter = require('./routes/checkout');
 
 app.use('/', indexRouter);
 app.use('/shop', shopRouter);
@@ -47,7 +47,7 @@ app.use('/profile', profileRouter);
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/auth', authRouter);
-
+app.use('/checkout', checkoutRouter);
 // Start the server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
