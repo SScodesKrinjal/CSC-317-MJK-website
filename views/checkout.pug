@@ -1,0 +1,80 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    title Checkout - MKJ Electronics
+    link(rel="stylesheet", href="../css/style.css")
+    link(rel="preconnect", href="https://fonts.googleapis.com")
+    link(rel="preconnect", href="https://fonts.gstatic.com" crossorigin)
+    link(href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap", rel="stylesheet")
+  body
+    header
+      h1 MKJ Electronics
+      nav
+        a(href="/") Home
+        a(href="/shop") Shop
+        a(href="/profile") Profile
+        a(href="/cart") Cart
+        a(href="/about") About
+        a(href="/faq") FAQ
+        a(href="/login") Login
+
+    main
+      h1 Checkout
+
+      // Display error message if it exists
+      if error
+        p(style="color: red;") #{error}
+
+      .order-summary
+        h2 Order Summary
+        each item in cartItems
+          div
+            span #{item.title} - $#{item.price.toFixed(2)}
+        h3 Total: $#{total}
+
+      form#payment-form(method="POST", action="/checkout")
+        h2 Payment Information
+        label(for="creditCard") Credit Card Number:
+        input#creditCard(type="text", name="creditCard", required)
+        br
+
+        label(for="expiryDate") Expiry Date (MM/YY):
+        input#expiryDate(type="text", name="expiryDate", required)
+        br
+
+        label(for="cvv") CVV:
+        input#cvv(type="text", name="cvv", required)
+        br
+
+        button(type="submit") Complete Purchase
+
+    script.
+      document.getElementById('payment-form').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const formData = {
+          creditCard: document.getElementById('creditCard').value,
+          expiryDate: document.getElementById('expiryDate').value,
+          cvv: document.getElementById('cvv').value
+        };
+
+        try {
+          const response = await fetch('/checkout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+          });
+
+          const data = await response.json();
+          if (data.success) {
+            alert('Purchase successful! Redirecting to your account...');
+            window.location.href = '/profile';
+          } else {
+            alert(data.error || 'Error processing payment');
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Error processing payment. Please try again.');
+        }
+      });
