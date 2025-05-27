@@ -17,7 +17,8 @@ html(lang="en")
         a(href="/cart") Cart
         a(href="/about") About
         a(href="/faq") FAQ
-        a(href="/login") Login
+        if !username
+          a(href="/login") Login
 
     main
       img(src="/images/" + product.image, alt=product.title, style="max-width: 300px")

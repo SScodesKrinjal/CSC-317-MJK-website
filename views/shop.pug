@@ -17,8 +17,13 @@ html(lang="en")
         a(href="/cart") Cart
         a(href="/about") About
         a(href="/faq") FAQ
-        a(href="/login") Login
+        if !username
+          a(href="/login") Login
 
+    form(action="/search", method="GET", class="search-form")
+      input(type="text", name="q", placeholder="Search for products...", value=searchQuery || '')
+      button(type="submit") Search
+      
     main.shop
       h2 Our Products
       p Check out our wide range of electronics. More Coming Soon!

@@ -24,6 +24,12 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.use((req, res, next) => {
+  res.locals.username = req.session.username || null;
+  next();
+});
+
+
 //import and use route files
 const indexRouter = require('./routes/index');
 const shopRouter = require('./routes/shop');

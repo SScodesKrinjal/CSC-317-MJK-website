@@ -18,7 +18,8 @@ html(lang="en")
         a(href="/cart") Cart
         a(href="/about") About
         a(href="/faq") FAQ
-        a(href="/login") Login
+        if !username
+          a(href="/login") Login
 
     main
       section.faq
