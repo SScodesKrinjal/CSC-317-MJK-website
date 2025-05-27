@@ -743,3 +743,138 @@ form button:hover {
   display: inline-block;
   margin-top: 10px;
 }
+
+@media (max-width: 768px) {
+  /* General layout */
+  body {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  nav a {
+    display: block;
+    margin: 5px 0;
+    text-align: center;
+  }
+
+  /* Shared container fixes */
+  main, .profile, .about, .faq, .shop {
+    padding: 15px;
+    margin: 0 10px;
+  }
+
+  /* ABOUT page */
+  .about h1, .about h2, .about h3 {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .about p {
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  /* PROFILE page */
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-details {
+    padding: 0;
+  }
+
+  .profile-details p {
+    font-size: 1rem;
+    padding: 0 10px;
+    text-align: center;
+  }
+
+  .profile-card {
+    padding: 15px;
+  }
+
+  .profile-card h3 {
+    font-size: 1.3rem;
+  }
+
+  form button {
+    font-size: 1rem;
+    padding: 10px;
+  }
+
+  /* HOME page */
+  .homepage .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  .homepage .hero p {
+    font-size: 1rem;
+  }
+
+  .homepage .cta-btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .homepage .category-grid,
+  .homepage .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .homepage .category-card,
+  .homepage .product-card {
+    padding: 15px;
+  }
+
+  /* SHOP page */
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .product-card h4 {
+    font-size: 1.2rem;
+  }
+
+  .product-card p {
+    font-size: 1rem;
+  }
+
+  .product-link {
+    font-size: 1rem;
+    padding: 8px 12px;
+  }
+
+  /* PURCHASE HISTORY */
+  .purchase-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .purchase-item img {
+    margin: 0 auto 10px;
+  }
+
+  .purchase-details,
+  .purchase-actions {
+    margin: 0 auto;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  footer .footer-links a {
+    display: block;
+    margin: 5px 0;
+  }
+}
